@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bashboard2</title>
+    <style>
+        .container{
+            border: 2px solid black;
+            margin: auto;
+            width: 380px;
+            height: fit-content;
+            background:whitesmoke;
+            border-radius: 10px;
+        }
+        div{
+            margin-left: 10px;
+        }
+        h1,h4{
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+        input{
+            border-left: none;
+            border-right:none;
+            border-top: none;
+            border-bottom: 2px solid black;
+            outline: none;
+            background: none;
+        }
+        butto{
+            background: linear-gradient(rgba(0,225,225,0.209),rgba(225, 0, 0, 0.48));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 15px 10px;
+            width: 200px;
+            margin-left:30px ;
+            margin-top: 30px;
+        }
+        label{
+            margin-top: 10px;
+        }
+        .section{
+            display: flex;
+        }
+        .sec button{
+            padding: 10px 10px;
+        }
+        .balance{
+            background-color: lightseagreen;
+            width: 300px;
+            height: 120px;
+        }
+        .balance p{
+            text-align: center;
+        }
+        .but1{
+            width: 150px;
+            margin-top: 10px;
+            height: 50px;
+            border: none;
+            font-size: 15px;
+            background-color: cyan;
+            padding: 10px 10px;
+            cursor: pointer;
+        }
+        .but2{
+            width: 150px;
+            margin-top: 10px;
+            height: 50px;
+            border: none;
+            font-size: 15px;
+            background-color: lightgreen;
+            padding: 10px 10px;
+            cursor: pointer;
+        }
+        .but3{
+            width: 150px;
+            height: 50px;
+            margin-top: 10px;
+            border: none;
+            background-color: lightyellow;
+            font-size: 15px;
+            padding: 10px 10px;
+            cursor: pointer;
+        }
+        .but4{
+            width: 150px;
+            margin-top: 10px;
+            height: 50px;
+            border: none;
+            background-color: lightcoral;
+            font-size: 15px;
+            padding: 10px 10px;
+            cursor: pointer;
+        }
+        .butt{
+            margin-bottom: 20px;
+            background: linear-gradient(rgba(0,225,225,0.209),rgba(225, 0, 0, 0.48));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 15px 10px;
+            width: 200px;
+            margin-left:30px ;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <div class="header">
+            <h3 id="user"></h3>
+            <h3> Destiny Bank PLC.</h3>
+            <!-- <p>Good morning, saving is key to development</p> -->
+            <div id="show"></div>
+        </div>
+        <div class="balance">
+            <p>Account Balance</p>
+            <p id="accountBalance"></p>
+        </div>
+
+    
+            <div class="section">
+                <div
+                    <button onclick="sendMoney()" class="but1">Send Money</button>
+                </div>
+                <div class="withdraw">
+                    <i class="material-icons"></i>
+                    <button onclick="airtime()" class="but2">Recharge Airtime</button>
+                </div>
+            </div>
+
+
+
+            <div class="section">
+                <div class="bills">
+                    <div class="material-icons"></div>
+                    <button onclick="paybills()" class="but3">Pay Bills</button>
+                </div>
+                <div class="atm">
+                    <div class="material-icons"></div>
+                    <button onclick="atm()" class="but4">Request for ATM</button>
+                </div>
+            </div>
+
+        <div class="content">
+            <!-- <p>let your money work for you</p> -->
+
+            <!-- <div class="firstcontent"> -->
+                <!-- <p>save for raining days</p> -->
+            <!-- </div> -->
+
+
+            <!-- <div class="secondcontent"> -->
+                <!-- <p>Invest your money wisely</p> -->
+            <!-- </div> -->
+
+
+        </div>
+
+
+        <div class="last">
+            <!-- <p>Ways to earn money</p> -->
+            <!-- <div  class="last-content"> -->
+                <!-- <i class="material-icons">computer</i> -->
+                <!-- <p>Invest and get incentives</p> -->
+            </div>
+            <button onclick="logout()" class="butt">logout</button>
+
+        </div>
+
+     </div>
+     
+    
+</body>
+</html>
+<script>
+    let currentUser = localStorage.getItem("loggedUser");
+    let accountbalance = document.getElementById("accountBalance")
+    myUser = document.getElementById("user")
+    let screen = document.getElementById("show")
+    let accountNumber = JSON.parse(localStorage.getItem("accountNumber"));
+    let fullName = localStorage.getItem("fullName");
+    let email = JSON.parse(localStorage.getItem("loggedUser"));
+    let accBal = JSON.parse(localStorage.getItem('accbal'));
+    let receiverAccountnum = localStorage.getItem('receiveracctno');
+    let receiverAccountbal = localStorage.getItem('receiveracctbal');
+    let receivernewBal = localStorage.getItem('newBal')
+
+    
+
+    accountbalance.textContent = '₦' + receivernewBal;
+
+    // if(accBal){
+    //     document.getElementById("accountBalance").textContent = '$' + accBal;
+    // }
+    myUser.innerHTML += `Hello ${fullName}`;
+    screen.innerHTML += `Account number: ${receiverAccountnum}`;
+    function sendMoney() {
+        window.location.href = "sendmoney.html";
+        
+    }
+    function airtime() {
+        window.location.href = "airtime.html";
+
+        
+    }
+    function paybills() {
+        window.location.href = "paybills.html";
+        
+    }
+    function atm() {
+        alert("₦1000 would be deducted for the request of atm card")
+        window.location.href = "atm.html"
+        
+    }
+    function logout() {
+        window.location.href = "login.html";
+    }
+</script>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debit card</title>
+    <link rel="stylesheet" href="./styles/atm.css">
+</head>
+<body>
+    <div class="signup">
+        <h1>BS Bank</h1>
+        <h3>ATM Request</h3>
+        <div class="img">
+    <img src="./images/atm2.png" alt="">
+    <img src="./images/atm1.png" alt="">
+    </div>
+    <form>
+        <label for="amount">Enter pin:</label>
+		<input type="number" id="pin" name="pin" min="1" required><br>
+    </form>
+    <button onclick="proceedToRequest()">Proceed to request</button>
+    </div>
+</body>
+<script>
+    let pin = document.getElementById("pin");
+
+    function proceedToRequest() {
+        let storedPin = localStorage.getItem("trasactionPin");
+        if(pin.value !== storedPin) {
+            alert("Wrong pin");
+            return;
+        } 
+
+        let currentBal = +localStorage.getItem('accbal');
+        if (currentBal) {
+            currentBal -= 1000;
+            localStorage.setItem('accbal', currentBal);
+        }
+        alert("ATM would be delivered soon")
+        window.location.href = "dashboard.html"
+
+    }
+</script>
+</html>

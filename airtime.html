@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airtime</title>
+    <link href="./styles/airtime.css" rel="stylesheet">
+</head>
+<body>
+    <div class="signup">
+        <h1>BS Bank</h1>
+    <h3>Recharge Airtime</h3>
+    <form action="buy_airtime.php" method="post">
+        <label for="network">Select Network:</label>
+        <select name="network" id="network">
+          <option value="mtn">MTN</option>
+          <option value="glo">Glo</option>
+          <option value="airtel">Airtel</option>
+          <option value="9mobile">9mobile</option>
+        </select>
+        <br>
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone-number" name="phone_number"><br><br>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount"><br><br>
+        <label for="amount">Pin:</label>
+		<input type="number" id="pin" name="pin" min="1" required><br>
+        <button onclick="buyairtime(event)" type="submit">Buy airtime</button>
+      </form>
+      </div>
+</body>
+<script>
+    let networkType = document.getElementById("network")
+    let phoneNumber = document.getElementById("phone-number");
+    let amount = document.getElementById("amount");
+    let pin = document.getElementById("pin");
+
+    function buyairtime(ev) {
+        ev.preventDefault();
+        if (!phoneNumber.value || !amount.value) {
+        alert('Please fill in all fields.');
+        return;
+    }
+        let purchaseAirtime = {
+            networkType: networkType.value,
+            phoneNumber: phoneNumber.value,
+            amount: amount.value
+        }
+        console.log(purchaseAirtime);
+        localStorage.setItem("transaction-amount", amount.value);
+
+        let storedPin = localStorage.getItem("trasactionPin");
+        if(pin.value !== storedPin) {
+            alert("Wrong pin");
+            return;
+        }
+
+        let currentBal = +localStorage.getItem('accbal');
+
+        if (currentBal < amount.value){
+            alert("Not enough funds");
+            return;
+        }
+
+        if (currentBal) {
+            currentBal -= amount.value;
+            localStorage.setItem('accbal', currentBal);
+        }
+
+        alert("Press OK to confirm transaction");
+        window.location.href = "dashboard.html"
+
+
+        // let availableBalance = JSON.parse(localStorage.getItem("accountdetails"));
+        // console.log(availableBalance)
+        // let newBalance = availableBalance - amount.value;
+        // console.log(newBalance);
+        // // alert(`$${amount.value} airtime purchased successfully for ${phoneNumber.value}.`);
+
+        // localStorage.setItem("newBalance", JSON.stringify(newBalance));
+         
+        // window.location.href = "sucess.html"
+
+        // await window.location.reload("dashboard.html")
+    }   
+</script>
+</html>

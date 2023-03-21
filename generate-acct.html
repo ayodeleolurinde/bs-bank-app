@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BS Bank generate-acct</title>
+    <style>
+        .signup{
+            border: 2px solid black;
+            margin: auto;
+            width: 300px;
+            height: 535px;
+            background:linear-gradient(rgba(0, 54, 75, 0.409),rgba(0, 84, 5, 0.64)) ;
+            border-radius: 10px;
+        }
+        div{
+            margin-left: 10px;
+        }
+        h1,h4{
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+        input{
+            border-left: none;
+            border-right:none;
+            border-top: none;
+            border-bottom: 2px solid black;
+            outline: none;
+            background: none;
+        }
+        button{
+            background: linear-gradient(rgba(0,225,225,0.209),rgba(225, 0, 0, 0.48));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 15px 10px;
+            width: 200px;
+            margin-left:30px ;
+            margin-top: 30px;
+        }
+        button:hover{
+            background: linear-gradient(rgba(199, 29, 40, 0.667),rgba(12, 57, 205, 0.708));
+        }
+        label{
+            margin-top: 10px;
+        }
+        .flex{
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    
+<div class="signup">
+    <h1>BS Bank</h1>
+    <div class="section">
+        <h3>Generate your account number</h3>
+        <p>Your account number is:</p>
+        <p id="account-number"></p>
+        <button onclick="generateAccountNUmber()">Generate</button>
+        <h3>Create your pin</h3>
+        <span class="flex">
+            <p>Your pin is:</p>
+            <p id="create-pin"></p>
+        </span>
+        <button onclick="createpin()">Create pin</button>
+        <button onclick="dashboard()">Proceed to your dashboard</button>
+
+    </div>
+
+</div>  
+</body>
+</html>
+<script>
+    function generateAccountNUmber() {
+        let accountNumber = Math.floor(Math.random() * 9000000000) + 1000000000;
+        let accountNumberElement = document.getElementById("account-number");
+        accountNumberElement.textContent = accountNumber;
+
+        localStorage.setItem("accountNumber", accountNumber);
+    }
+
+    function createpin() {
+        let pin = Math.floor(Math.random() * 9000) + 1000;
+        let createpinn = document.getElementById("create-pin");
+        createpinn.textContent = pin;
+        localStorage.setItem("trasactionPin", pin)
+        // let storedPin = localStorage.getItem("transactionPin")
+        
+    }
+    function dashboard() {
+        if(!localStorage.getItem('accbal')){
+            localStorage.setItem('accbal', 10000)
+        }
+           
+        window.location.href = "dashboard.html" 
+    }
+    
+</script>

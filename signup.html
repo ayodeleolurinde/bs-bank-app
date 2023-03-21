@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BsBank Sign up</title>
+    <style>
+         .form{
+            border: 2px solid black;
+            margin: auto;
+            width: 300px;
+            height: 520px;
+            background:linear-gradient(rgba(0, 54, 75, 0.409),rgba(0, 84, 5, 0.64)) ;
+            border-radius: 10px;
+        }
+        div{
+            margin-left: 30px;
+        }
+        h1,h4{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+        input{
+            border-left: none;
+            border-right:none;
+            border-top: none;
+            border-bottom: 1px solid blue;
+            outline: none;
+            background: none;
+        }button{
+            background: linear-gradient(rgba(0,126,190,0.245),rgba(225, 0, 0, 0.48));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 15px 10px;
+            width: 200px;
+            margin-left:20px ;
+            margin-top: 30px;
+        }
+        label{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<main>
+<form action="" class="form">
+    <h1>BSBANK</h1>
+    <h4>Create a Sign up Page</h4>
+     
+        <div>
+            <label for="Username">Username</label><br><br>
+           <input  type="text" name="" id="demo">
+        </div>
+         <div>
+                 <label for="Email">Email</label><br><br>
+                <input type="email" name="" id="memo">
+        </div>
+        <div>
+                 <label for="">Password</label><br><br>
+                <input type="password" name="" id="hide">
+        </div>
+         <div>
+                <label for="">Confirm password</label><br><br>
+                <input type="password" name="" id="ban">
+         </div>
+         <div>
+            <button onclick="show(event)">Sign up</button>
+            <!-- <button onclick="signIn(event)">Sign in with Google>></button> -->
+         </div>
+
+  
+</form>
+    
+</main>
+    
+</body>
+</html>
+
+ <script>
+    let inp = document.querySelector("#demo")
+    let inp1 = document.querySelector("#memo")
+    let inp2 = document.querySelector("#hide")
+
+    let inp3 = document.querySelector("#ban")
+    let array = []
+
+
+    function show(ev){
+        ev.preventDefault()
+
+        let mike1 = {
+            name: inp.value,
+            email: inp1.value,
+            password:inp2.value,
+            copassword:inp3.value
+        }
+        array.push(mike1)
+        console.log(mike1);
+        localStorage.setItem('user', JSON.stringify(mike1));
+        if (!localStorage.getItem('fullName')) {
+            localStorage.setItem('fullName', inp.value);
+        }
+        if (!localStorage.getItem('password')) {
+            localStorage.setItem('password', inp2.value);
+        }
+        let receiver = {
+            email: "ayolurinde@gmail.com",
+            password: "abc"
+        }
+        if(!localStorage.getItem('receiver')) {
+            localStorage.setItem('receiver', JSON.stringify(receiver))
+        }
+        if(mike1.password == mike1.copassword){
+        alert("signup successful");
+        window.location.href = "login.html";
+        }else{
+        alert("cannot login")
+    }
+}
+
+</script>

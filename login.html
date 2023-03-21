@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BSBank Login</title>
+    <style>
+        .form{
+            border: 2px solid black;
+            margin: auto;
+            width: 300px;
+            height: 450px;
+            background:linear-gradient(rgba(0, 54, 75, 0.409),rgba(0, 84, 5, 0.64)) ;
+            border-radius: 10px;
+        }
+        div{
+            margin-left: 10px;
+        }
+        h1,h4{
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+        }
+        input{
+            border-left: none;
+            border-right:none;
+            border-top: none;
+            border-bottom: 2px solid black;
+            outline: none;
+            background: none;
+        }
+        button{
+            background: linear-gradient(rgba(0,225,225,0.209),rgba(225, 0, 0, 0.48));
+            border: none;
+            border-radius: 8px;
+            color: white;
+            padding: 15px 10px;
+            width: 200px;
+            margin-left:30px ;
+            margin-top: 30px;
+        }
+        button:hover{
+            background: linear-gradient(rgba(199, 29, 40, 0.667),rgba(12, 57, 205, 0.708));
+        }
+        label{
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main id="user">
+        <form action="" class="form">
+            <h1>BS Bank</h1>
+            <h4>Login</h4>
+            <div>
+                <label for="Email">Email</label><br><br>
+                <input type="email" name="" id="memo">
+            </div>
+            <div>
+                <label for="">Password</label><br><br>
+                <input type="password" name="" id="hide">
+            </div>
+            
+                <button onclick="show(event)">Login>></button>
+            
+            
+
+
+        </form>
+    </main>
+    
+</body>
+</html>
+<script>
+     let inp1 =document.getElementById("memo")
+    let inp2 =document.getElementById("hide")
+    let userPassword = localStorage.getItem('password');
+    let array = []
+    function show(ev){
+        ev.preventDefault()
+        let mike1 = {
+            email: inp1.value,
+            password:inp2.value
+        }
+        array.push(mike1)
+        console.log(mike1);
+        localStorage.setItem('receiveracctno', 4769797898);
+        localStorage.setItem('receiveracctbal', parseInt(5000));
+
+        let receiverInfo = JSON.parse(localStorage.getItem('receiver'))
+
+        if(mike1.email == receiverInfo.email) {
+            alert("Login sucessful");
+            window.location.href = "dashboard2.html";
+            return;
+        }
+         
+        if (inp2.value !== userPassword){
+            alert("Incorrect email or password");
+             return;
+         }
+
+        if(mike1.email == "" && mike1.password == ""){
+            alert("cannot login")
+        }else{
+            alert("login successful");
+            window.location.href = "generate-acct.html";
+        }
+        
+    }
+
+    let myuser = document.getElementById("user")
+    let gotten = JSON.parse(localStorage.getItem('user'))
+    console.log(gotten);
+    
+</script>
